@@ -115,6 +115,48 @@ tr:hover td{background:#fafafa}
 @media(max-width:780px){.sidebar{display:none}.main{margin-left:0;padding:12px 12px 76px}.g2,.g3,.stats{grid-template-columns:1fr!important}.card{padding:13px;border-radius:14px}.page-title{font-size:20px}.tw{overflow-x:auto}table{min-width:620px}.login-box{width:92vw}.unsaved{left:12px;right:12px;bottom:80px}.stat-v{font-size:20px}}
 #mobile-nav{display:none}
 @media(max-width:780px){#mobile-nav{display:flex;position:fixed;left:8px;right:8px;bottom:8px;z-index:800;background:#fff;border:1px solid #e5e7eb;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.16);padding:6px;justify-content:space-around}#mobile-nav button{border:0;background:transparent;color:#64736b;font-size:10px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 5px;border-radius:14px;min-width:48px}#mobile-nav button i{font-size:19px}#mobile-nav button.active{background:#e8f7ed;color:#1d6f42}}
+
+
+/* ==== STABIL MOBIL TASARIM FIX - SADECE CSS, LOGIN SCRIPTINE DOKUNMAZ ==== */
+@media (max-width: 780px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden;background:#f3f4f6;font-size:14px;}
+  #login-screen{padding:16px;align-items:center;}
+  .login-box{width:100%;max-width:390px;padding:24px 18px;border-radius:22px;}
+  .login-logo{margin-bottom:20px;}
+  .login-logo span{font-size:19px;}
+  input,select,textarea{font-size:16px;min-height:44px;border-radius:12px;}
+  label{font-size:10px;margin-bottom:6px;}
+  .btn{min-height:42px;border-radius:12px;justify-content:center;}
+  .btn-sm{min-height:34px;padding:7px 10px;}
+  .sidebar{display:none!important;}
+  .main{margin-left:0!important;padding:12px 10px 92px!important;max-width:100vw;overflow-x:hidden;}
+  .page-title{font-size:21px;font-weight:800;margin:6px 2px 12px;}
+  .g2,.g3,.stats{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;}
+  .card{padding:13px!important;border-radius:18px!important;margin-bottom:12px!important;box-shadow:0 6px 20px rgba(0,0,0,.06)!important;}
+  .card-head{gap:8px;align-items:flex-start;}
+  .card-title{font-size:11px;line-height:1.3;}
+  .stat{padding:13px;border-radius:18px;}
+  .stat-v{font-size:21px;line-height:1.2;word-break:break-word;}
+  .fg{margin-bottom:12px;}
+  .btn-row{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;}
+  .btn-row .btn{width:100%;}
+  .flist{max-height:210px;border-radius:14px;}
+  .fi{padding:11px 10px;font-size:13px;}
+  .modal-overlay{padding:10px!important;align-items:flex-end!important;}
+  .modal{width:100%!important;max-width:100%!important;max-height:90vh!important;border-radius:22px 22px 0 0!important;padding:16px!important;}
+  .tw{border:0!important;box-shadow:none!important;border-radius:0!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;background:transparent!important;}
+  table{min-width:560px!important;font-size:12px!important;background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;}
+  th,td{padding:9px 8px!important;white-space:nowrap;}
+  #mobile-nav{display:flex!important;position:fixed!important;left:8px!important;right:8px!important;bottom:8px!important;z-index:9999!important;background:#fff!important;border:1px solid #e5e7eb!important;border-radius:22px!important;box-shadow:0 10px 30px rgba(0,0,0,.18)!important;padding:6px!important;justify-content:space-around!important;}
+  #mobile-nav button{border:0!important;background:transparent!important;color:#64736b!important;font-size:10px!important;font-weight:800!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:2px!important;padding:7px 4px!important;border-radius:16px!important;min-width:50px!important;}
+  #mobile-nav button i{font-size:20px!important;}
+  #mobile-nav button.active{background:#e8f7ed!important;color:#1d6f42!important;}
+  .unsaved{left:10px!important;right:10px!important;bottom:82px!important;border-radius:16px!important;display:none;}
+  .unsaved.show{display:block!important;}
+  .unsaved div{margin-top:8px;display:grid!important;grid-template-columns:1fr 1fr!important;}
+}
+@media (min-width:781px){#mobile-nav{display:none!important;}}
+
 </style>
 </head>
 <body>
@@ -157,7 +199,8 @@ tr:hover td{background:#fafafa}
       <div class="sb-item" onclick="goPage('kasa',this)"><i class="ti ti-wallet"></i> Kasa</div>
       <div class="sb-item" onclick="goPage('mizan',this)"><i class="ti ti-scale"></i> Cari Mizan</div>
       <div class="sb-label">Sistem</div>
-      <div class="sb-item" onclick="goPage('yedek',this)" style="color:var(--g)"><i class="ti ti-file-spreadsheet"></i> Excel & Yedek</div>
+      <div class="sb-item only-admin" onclick="goPage('kullanicilar',this)"><i class="ti ti-users"></i> Kullanıcılar</div>
+      <div class="sb-item only-admin" onclick="goPage('yedek',this)" style="color:var(--g)"><i class="ti ti-file-spreadsheet"></i> Excel & Yedek</div>
     </div>
     <div class="sb-footer">
       <div class="sb-user">
@@ -528,6 +571,45 @@ tr:hover td{background:#fafafa}
       </div>
     </div>
 
+
+    <!-- KULLANICI YÖNETİMİ -->
+    <div id="page-kullanicilar" class="page">
+      <div class="page-title">Kullanıcı Yönetimi</div>
+      <div id="ku-al"></div>
+      <div class="g2" style="align-items:start">
+        <div class="card">
+          <div class="card-head"><div class="card-title"><i class="ti ti-user-plus"></i> Kullanıcı Ekle / Düzenle</div></div>
+          <input type="hidden" id="ku-id">
+          <div class="fg"><label>Kullanıcı Adı *</label><input id="ku-user" placeholder="ornek: personel"></div>
+          <div class="fg"><label>Şifre <span style="color:#9ca3af;font-weight:400">(düzenlemede boş bırakılırsa değişmez)</span></label><input id="ku-pass" type="password" placeholder="Yeni şifre"></div>
+          <div class="fg"><label>Yetki / Rol</label>
+            <select id="ku-role">
+              <option value="admin">Admin — Tam yetki</option>
+              <option value="personel">Personel — Kayıt ekler, silemez</option>
+              <option value="viewer">Görüntüleyici — Sadece izler</option>
+            </select>
+          </div>
+          <div class="fg"><label>Durum</label><select id="ku-active"><option value="1">Aktif</option><option value="0">Pasif</option></select></div>
+          <div class="btn-row">
+            <button class="btn btn-g" onclick="kullaniciKaydet()"><i class="ti ti-device-floppy"></i> Kaydet</button>
+            <button class="btn" onclick="kullaniciTemizle()"><i class="ti ti-plus"></i> Yeni</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title"><i class="ti ti-users"></i> Kullanıcılar</div></div>
+          <div class="tw"><table><thead><tr><th>Kullanıcı</th><th>Rol</th><th>Durum</th><th>Son Giriş</th><th></th></tr></thead><tbody id="ku-tb"></tbody></table></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:8px"><i class="ti ti-shield-lock"></i> Yetki Notları</div>
+        <div style="font-size:12px;color:#6b7280;line-height:1.6">
+          <strong>Admin:</strong> tüm işlemler, kullanıcı yönetimi, silme ve yedekleme.<br>
+          <strong>Personel:</strong> firma/ürün/hareket/stok ekleyebilir; silme ve yedek ayarı yapamaz.<br>
+          <strong>Görüntüleyici:</strong> sadece ekranları görür; kayıt ekleyemez ve silemez.
+        </div>
+      </div>
+    </div>
+
     <!-- EXCEL & YEDEK -->
     <div id="page-yedek" class="page">
       <div class="page-title">Excel & Yedek</div>
@@ -549,7 +631,7 @@ tr:hover td{background:#fafafa}
           <button class="btn" onclick="manuelYedekle()"><i class="ti ti-cloud-upload"></i> Buluta Kaydet</button>
           <button class="btn btn-b" onclick="bulutYukle()"><i class="ti ti-cloud-download"></i> Buluttan Yükle</button>
         </div>
-        <div id="auto-son" style="font-size:11px;color:#6b7280;margin-top:8px">Son yedek: —</div>
+        <div id="auto-son" style="font-size:11px;color:#6b7280;margin-top:8px">Otomatik senkron hazırlanıyor...</div>
       </div>
 
           <div class="card">
@@ -737,12 +819,100 @@ tr:hover td{background:#fafafa}
 </div>
 
 <script>
-const USERS={admin:'1234',kullanici:'1234'};
+// Kullanıcılar DB.users içinde tutulur.
 let currentUser=null,hasUnsaved=false;
-const DB={firmalar:[],hareketler:[],urunler:[],nextFId:1,nextHId:1,nextUId:1};
-function dbSave(){try{localStorage.setItem('cari_pro_v3',JSON.stringify(DB));hasUnsaved=true;document.getElementById('unsaved-bar').classList.add('show');if(typeof renderDashboard==='function')renderDashboard();bulutKaydet();}catch(e){}}
+const DB={firmalar:[],hareketler:[],urunler:[],nextFId:1,nextHId:1,nextUId:1,users:[]};
+let bulutIlkYuklemeBitti=false, bulutKayitTimer=null, bulutKayitDevam=false;
+function dbSave(){
+  try{
+    DB.ts=new Date().toISOString();
+    localStorage.setItem('cari_pro_v3',JSON.stringify(DB));
+    hasUnsaved=true;
+    const ub=document.getElementById('unsaved-bar'); if(ub)ub.classList.add('show');
+    if(typeof renderDashboard==='function')renderDashboard();
+    bulutKaydetPlanla();
+  }catch(e){}
+}
 function dbLoad(){try{const d=localStorage.getItem('cari_pro_v3');if(d)Object.assign(DB,JSON.parse(d));}catch(e){}}
 dbLoad();
+
+// KULLANICI / YETKİ SİSTEMİ
+function passHash(s){
+  s=String(s||'');
+  let h=2166136261;
+  for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h+=(h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24);}
+  return 'h'+(h>>>0).toString(16);
+}
+function ensureUsers(){
+  if(!Array.isArray(DB.users)) DB.users=[];
+  if(DB.users.length===0){
+    DB.users=[
+      {id:1,username:'admin',pass:passHash('1234'),role:'admin',active:true,lastLogin:''},
+      {id:2,username:'kullanici',pass:passHash('1234'),role:'personel',active:true,lastLogin:''},
+      {id:3,username:'izle',pass:passHash('1234'),role:'viewer',active:true,lastLogin:''}
+    ];
+  }
+}
+ensureUsers();
+function roleLabel(r){return {admin:'Admin',personel:'Personel',viewer:'Görüntüleyici'}[r]||r||'Personel';}
+function role(){return currentUser?.role||'viewer';}
+function isAdmin(){return role()==='admin';}
+function canWrite(){return ['admin','personel'].includes(role());}
+function canDelete(){return isAdmin();}
+function permissionError(msg='Bu işlem için yetkiniz yok.'){alert(msg);return false;}
+function logAction(tip,detay){ if(!DB.logs)DB.logs=[]; DB.logs.push({id:Date.now()+Math.random(),tarih:new Date().toISOString(),kullanici:currentUser?.username||'',tip,detay}); if(DB.logs.length>500)DB.logs=DB.logs.slice(-500); }
+function applyRoleUI(){
+  const admin=isAdmin(), write=canWrite();
+  document.querySelectorAll('.only-admin').forEach(el=>el.style.display=admin?'':'none');
+  document.querySelectorAll('#page-yedek input,#page-yedek button').forEach(el=>{el.disabled=!admin; el.style.opacity=admin?'':'0.55';});
+  document.querySelectorAll('button[onclick*="Sil"],button[onclick*="sil"],button.btn-r').forEach(el=>{el.style.display=canDelete()?'':'none';});
+  if(!write){
+    document.querySelectorAll('button[onclick*="Kaydet"],button[onclick*="kaydet"],button[onclick*="Ekle"],button[onclick*="ekle"],button[onclick*="hareketKaydet"],button[onclick*="stokKaydet"],button[onclick*="firmaKaydet"],button[onclick*="urunKaydet"]').forEach(el=>{el.disabled=true; el.style.opacity='0.55';});
+  }
+}
+function kullaniciTemizle(){
+  ['ku-id','ku-user','ku-pass'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const r=document.getElementById('ku-role'); if(r)r.value='personel';
+  const a=document.getElementById('ku-active'); if(a)a.value='1';
+}
+function kullaniciKaydet(){
+  if(!isAdmin()) return permissionError();
+  ensureUsers();
+  const id=val('ku-id'), username=val('ku-user').trim(), pass=val('ku-pass'), roleV=val('ku-role')||'personel', active=val('ku-active')==='1';
+  if(!username) return showA('ku-al','Kullanıcı adı zorunludur.','e');
+  if(!id && !pass) return showA('ku-al','Yeni kullanıcı için şifre zorunludur.','e');
+  const dup=DB.users.find(u=>u.username.toLowerCase()===username.toLowerCase() && String(u.id)!==String(id));
+  if(dup) return showA('ku-al','Bu kullanıcı adı zaten var.','e');
+  if(id){
+    const u=DB.users.find(x=>String(x.id)===String(id)); if(!u)return;
+    u.username=username; u.role=roleV; u.active=active; if(pass)u.pass=passHash(pass);
+    showA('ku-al','Kullanıcı güncellendi.'); logAction('Kullanıcı güncellendi', username);
+  }else{
+    DB.users.push({id:Date.now(),username,pass:passHash(pass),role:roleV,active,lastLogin:''});
+    showA('ku-al','Kullanıcı eklendi.'); logAction('Kullanıcı eklendi', username);
+  }
+  dbSave(); kullaniciTemizle(); renderKullanicilar(); applyRoleUI();
+}
+function kullaniciDuzenle(id){
+  if(!isAdmin()) return permissionError();
+  const u=DB.users.find(x=>String(x.id)===String(id)); if(!u)return;
+  document.getElementById('ku-id').value=u.id;
+  document.getElementById('ku-user').value=u.username;
+  document.getElementById('ku-pass').value='';
+  document.getElementById('ku-role').value=u.role||'personel';
+  document.getElementById('ku-active').value=u.active===false?'0':'1';
+}
+function kullaniciSil(id){
+  if(!isAdmin()) return permissionError();
+  const u=DB.users.find(x=>String(x.id)===String(id)); if(!u)return;
+  if(DB.users.filter(x=>x.role==='admin'&&x.active!==false).length<=1 && u.role==='admin'&&u.active!==false) return showA('ku-al','Son aktif admin silinemez.','e');
+  if(!confirm(u.username+' kullanıcısı silinsin mi?'))return;
+  DB.users=DB.users.filter(x=>String(x.id)!==String(id)); dbSave(); renderKullanicilar(); showA('ku-al','Kullanıcı silindi.');
+}
+function renderKullanicilar(){
+  ensureUsers(); const tb=document.getElementById('ku-tb'); if(!tb)return;
+  tb.innerHTML=DB.users.map(u=>`<tr><td><strong>${u.username}</strong></td><td><span class="badge b-blue">${roleLabel(u.role)}</span></td><td>${u.active===false?'<span class="badge b-x">Pasif</span>':'<span class="badge b-p">Aktif</span>'}</td><td>${u.lastLogin||'-'}</td><td style="white-space:nowrap"><button class="btn btn-sm" onclick="kullaniciDuzenle('${u.id}')"><i class="ti ti-edit"></i></button> <button class="btn btn-sm btn-r" onclick="kullaniciSil('${u.id}')"><i class="ti ti-trash"></i></button></td></tr>`).join('');
+}
 function markSaved(){hasUnsaved=false;document.getElementById('unsaved-bar').classList.remove('show');}
 const tl=n=>new Intl.NumberFormat('tr-TR',{style:'currency',currency:'TRY',minimumFractionDigits:2}).format(+n||0);
 const d2s=d=>d?new Date(d).toLocaleDateString('tr-TR'):'-';
@@ -769,19 +939,26 @@ function autoFKod(){const nums=DB.firmalar.map(x=>+(x.kod?.replace(/\D/g,'')||0)
 function autoBelge(){const d=new Date();const t=val('h-tarih')||today();const p=t.replace(/-/g,'');return`BLG-${p}`;}
 
 function login(){
-  const u=val('l-user').trim(),p=val('l-pass');
-  if(USERS[u]&&USERS[u]===p){
-    currentUser=u;
+  ensureUsers();
+  const u=val('l-user').trim();
+  const p=val('l-pass');
+  const user=(DB.users||[]).find(x=>String(x.username).toLowerCase()===u.toLowerCase() && x.active!==false);
+  if(user && user.pass===passHash(p)){
+    currentUser=user;
+    user.lastLogin=new Date().toLocaleString('tr-TR');
+    localStorage.setItem('cari_pro_v3',JSON.stringify(DB));
     document.getElementById('login-screen').style.display='none';
     document.getElementById('app').style.display='block';
-    document.getElementById('sb-av').textContent=u[0].toUpperCase();
-    document.getElementById('sb-name').textContent=u.charAt(0).toUpperCase()+u.slice(1);
+    document.getElementById('sb-av').textContent=user.username[0].toUpperCase();
+    document.getElementById('sb-name').textContent=user.username+' — '+roleLabel(user.role);
     initApp();
+    applyRoleUI();
   } else document.getElementById('l-err').style.display='flex';
 }
 function logout(){if(confirm('Çıkış yapmak istiyor musunuz?')){document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex';currentUser=null;}}
 
 function goPage(id,el){
+  if((id==='yedek'||id==='kullanicilar') && !isAdmin()) return permissionError('Bu bölüm sadece admin içindir.');
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.sb-item').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
@@ -793,6 +970,8 @@ function goPage(id,el){
   if(id==='hareket'){renderHF();genBelge();}
   if(id==='kategoriler')renderKategoriler();
   if(id==='yedek'){yedekBilgi();gsFormDoldur();}
+  if(id==='kullanicilar'){renderKullanicilar();kullaniciTemizle();}
+  applyRoleUI();
 }
 
 function firmaKaydet(){
@@ -1282,6 +1461,19 @@ let autoYedekInterval = null;
 
 function gsUrl(){ return (localStorage.getItem('cari_gs_url') || GS_DEFAULT_URL || '').trim(); }
 function gsToken(){ return (localStorage.getItem('cari_gs_token') || GS_DEFAULT_TOKEN || '1234').trim(); }
+function veriSayisi(d){
+  if(!d) return 0;
+  return (d.firmalar?.length||0)+(d.hareketler?.length||0)+(d.urunler?.length||0)+(d.stokHareketler?.length||0);
+}
+function bulutDurum(txt, renk){
+  const el=document.getElementById('auto-son');
+  if(el){el.textContent=txt; if(renk)el.style.color=renk;}
+}
+function bulutKaydetPlanla(){
+  if(!bulutIlkYuklemeBitti) return; // Site açılır açılmaz boş veriyi buluta basmasın.
+  if(bulutKayitTimer) clearTimeout(bulutKayitTimer);
+  bulutKayitTimer=setTimeout(()=>bulutKaydet(true), 1800);
+}
 
 function gsFormDoldur(){
   const u=document.getElementById('gs-url'), t=document.getElementById('gs-token');
@@ -1297,13 +1489,17 @@ function gsBaglantiKaydet(){
   showA('bulut-al','Google Sheets bağlantısı kaydedildi.');
 }
 
-async function bulutKaydet(silent=true) {
+async function bulutKaydet(silent=true, force=false) {
   const url = gsUrl();
-  if(!url) return;
+  if(!url || bulutKayitDevam) return;
+  // Otomatik modda tamamen boş veriyi buluta yazma; eski kayıtların yanlışlıkla silinmesini engeller.
+  if(!force && veriSayisi(DB)===0) {
+    bulutDurum('Otomatik senkron: boş veri gönderilmedi', '#6b7280');
+    return;
+  }
+  bulutKayitDevam=true;
   try {
     const data = {...DB, ts: new Date().toISOString()};
-    // Apps Script ContentService CORS cevabı vermediği için no-cors kullanıyoruz.
-    // Kayıt gider; tarayıcı güvenlik nedeniyle cevabı okuyamaz.
     await fetch(url, {
       method: 'POST',
       mode: 'no-cors',
@@ -1311,17 +1507,18 @@ async function bulutKaydet(silent=true) {
       body: JSON.stringify({token: gsToken(), action:'save', data})
     });
     const now = new Date().toLocaleString('tr-TR');
-    const el = document.getElementById('auto-son');
-    if (el) el.textContent = 'Son yedek: ' + now;
+    bulutDurum('Son otomatik senkron: ' + now, '#166534');
     markSaved();
-    if(!silent) showA('bulut-al','Veriler Google Sheets buluta gönderildi. Sheets sayfasını yenileyip kontrol edebilirsiniz.');
+    if(!silent) showA('bulut-al','Veriler Google Sheets buluta gönderildi.');
   } catch(e) {
+    bulutDurum('Senkron hatası: ' + e.message, '#991b1b');
     if(!silent) showA('bulut-al','Bulut kayıt hatası: ' + e.message,'e');
     console.log('Bulut kayıt hatası:', e);
+  } finally {
+    bulutKayitDevam=false;
   }
 }
-
-function manuelYedekle() { bulutKaydet(false); }
+function manuelYedekle() { bulutKaydet(false, true); }
 
 function jsonpLoad_(url){
   return new Promise((resolve,reject)=>{
@@ -1337,29 +1534,56 @@ function jsonpLoad_(url){
   });
 }
 
-async function bulutYukle() {
+async function bulutYukle(manuel=true) {
   const url = gsUrl();
-  if(!url) return showA('bulut-al','Önce Google Sheets /exec linkini kaydedin.','e');
+  if(!url) { if(manuel) showA('bulut-al','Önce Google Sheets /exec linkini kaydedin.','e'); return false; }
   try {
     const res = await jsonpLoad_(url);
-    if(!res || !res.ok) return showA('bulut-al','Yükleme hatası: ' + ((res&&res.error)||'Bilinmeyen hata'),'e');
-    if(res.empty || !res.data) return showA('bulut-al','Bulutta kayıt bulunamadı.','e');
-    if(!confirm('Buluttaki veriler yüklenecek. Mevcut veriler değişecek. Devam?')) return;
-    Object.assign(DB, res.data);
+    if(!res || !res.ok) { if(manuel) showA('bulut-al','Yükleme hatası: ' + ((res&&res.error)||'Bilinmeyen hata'),'e'); return false; }
+    if(res.empty || !res.data) { if(manuel) showA('bulut-al','Bulutta kayıt bulunamadı.','e'); return false; }
+
+    const cloud=res.data;
+    const localCount=veriSayisi(DB), cloudCount=veriSayisi(cloud);
+    const cloudTs=new Date(cloud.ts || res.updatedAt || 0).getTime();
+    const localTs=new Date(DB.ts || localStorage.getItem('cari_local_ts') || 0).getTime();
+
+    if(!manuel){
+      // Otomatikte güvenli kural: bulut daha doluysa veya aynı dolulukta daha yeniyse yükle.
+      // Bulut boş, cihaz dolu ise asla cihazı silme.
+      if(cloudCount===0 && localCount>0) return false;
+      if(!(cloudCount>localCount || (cloudCount===localCount && cloudTs>localTs))) return false;
+    } else {
+      if(!confirm('Buluttaki veriler yüklenecek. Mevcut veriler değişecek. Devam?')) return false;
+    }
+
+    Object.assign(DB, cloud);
+    if(!DB.ts) DB.ts = new Date().toISOString();
     localStorage.setItem('cari_pro_v3', JSON.stringify(DB));
+    localStorage.setItem('cari_local_ts', DB.ts || new Date().toISOString());
     stokEnsure();
     renderF(); renderU(); renderHF(); renderKatSelect(); renderKategoriler(); renderDashboard(); renderStok(); yedekBilgi();
-    showA('bulut-al', DB.firmalar.length + ' firma, ' + DB.hareketler.length + ' hareket yüklendi.');
+    bulutDurum('Buluttan yüklendi: ' + new Date().toLocaleString('tr-TR'), '#166534');
+    if(manuel) showA('bulut-al', DB.firmalar.length + ' firma, ' + DB.hareketler.length + ' hareket yüklendi.');
+    return true;
   } catch(e) {
-    showA('bulut-al', 'Yükleme hatası: ' + e.message, 'e');
+    bulutDurum('Buluttan yükleme hatası: ' + e.message, '#991b1b');
+    if(manuel) showA('bulut-al', 'Yükleme hatası: ' + e.message, 'e');
+    return false;
   }
 }
-
-function bulutOtomatikBaslat() {
+async function bulutOtomatikBaslat() {
   gsFormDoldur();
+  bulutDurum('Otomatik senkron hazırlanıyor...', '#6b7280');
+  await bulutYukle(false);
+  bulutIlkYuklemeBitti=true;
+  bulutDurum('Otomatik senkron açık', '#166534');
   if (autoYedekInterval) clearInterval(autoYedekInterval);
-  autoYedekInterval = setInterval(()=>bulutKaydet(true), 60000);
+  // Her 30 saniyede bir bulutta daha yeni veri var mı kontrol et.
+  autoYedekInterval = setInterval(()=>bulutYukle(false), 30000);
 }
+
+window.addEventListener('online', ()=>{ bulutDurum('İnternet geldi, senkron kontrol ediliyor...', '#166534'); bulutYukle(false).then(()=>bulutKaydet(true)); });
+window.addEventListener('offline', ()=>{ bulutDurum('İnternet yok: kayıtlar cihazda tutuluyor', '#991b1b'); });
 
 window.addEventListener('load', () => {
   setTimeout(bulutOtomatikBaslat, 500);
@@ -1859,6 +2083,24 @@ const _oldInitApp=initApp;initApp=function(){_oldInitApp();stokEnsure();renderDa
 const _oldHareketKaydet=hareketKaydet;hareketKaydet=function(){const before=DB.hareketler.length;_oldHareketKaydet();if(DB.hareketler.length>before){const h=DB.hareketler[DB.hareketler.length-1];stokOtomatik(h);dbSave();renderStok();renderDashboard();}};
 const _oldUrunKaydet=urunKaydet;urunKaydet=function(){_oldUrunKaydet();stokEnsure();renderStokSelect();renderStok();};
 function excelExportStok(){stokEnsure();const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(DB.urunler.map(u=>({Ürün:u.ad,Kategori:u.kat,Birim:u.bir,Stok:+u.stok||0,Minimum:+u.minStok||0,Fiyat:+u.fiy||0,Değer:(+u.stok||0)*(+u.fiy||0)}))),'StokDurumu');XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(DB.stokHareketler),'StokHareketleri');XLSX.writeFile(wb,'CariTakip_Stok.xlsx');}
+
+
+// YETKİ KONTROLLERİ — SON KATMAN
+(function(){
+  const wrapWrite=(name,label)=>{const fn=window[name]; if(typeof fn==='function'){window[name]=function(...args){if(!canWrite())return permissionError(label||'Kayıt ekleme/değiştirme yetkiniz yok.'); return fn.apply(this,args);};}};
+  const wrapDelete=(name)=>{const fn=window[name]; if(typeof fn==='function'){window[name]=function(...args){if(!canDelete())return permissionError('Silme yetkisi sadece admin kullanıcısında var.'); return fn.apply(this,args);};}};
+  const wrapAdmin=(name)=>{const fn=window[name]; if(typeof fn==='function'){window[name]=function(...args){if(!isAdmin())return permissionError('Bu işlem sadece admin içindir.'); return fn.apply(this,args);};}};
+  ['firmaKaydet','urunKaydet','hareketKaydet','stokKaydet','kategoriKaydet','harDuzenleKaydet','odDuzenleKaydet','kasaDuzKaydet'].forEach(n=>wrapWrite(n));
+  ['firmaSil','urunSil','harSil','odSil','kasaSil','kategoriSil','mizanFirmaSil'].forEach(n=>wrapDelete(n));
+  ['gsBaglantiKaydet','manuelYedekle','bulutYukle','jsonYedek','jsonYukle','excelImport','excelExport','excelExportStok'].forEach(n=>wrapAdmin(n));
+})();
+
+const _yetkiOldRenderF=renderF; renderF=function(){_yetkiOldRenderF();applyRoleUI();};
+const _yetkiOldRenderU=renderU; renderU=function(){_yetkiOldRenderU();applyRoleUI();};
+const _yetkiOldRenderStok=renderStok; renderStok=function(){_yetkiOldRenderStok();applyRoleUI();};
+const _yetkiOldMzYukle=mzYukle; mzYukle=function(){_yetkiOldMzYukle();applyRoleUI();};
+const _yetkiOldKasaYukle=kasaYukle; kasaYukle=function(){_yetkiOldKasaYukle();applyRoleUI();};
+const _yetkiOldInit=initApp; initApp=function(){_yetkiOldInit();ensureUsers();applyRoleUI();};
 
 </script>
 
